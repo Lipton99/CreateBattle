@@ -21,7 +21,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Player Get"
         android:id="@+id/button_camera"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
@@ -29,8 +29,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
+        android:text="Player Submit"
         android:id="@+id/button_decision_player"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
