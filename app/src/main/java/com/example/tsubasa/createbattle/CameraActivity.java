@@ -2,6 +2,7 @@ package com.example.tsubasa.createbattle;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.FaceDetector;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import Model.Player;
 public class CameraActivity extends AppCompatActivity {
 
     ImageView imageView;
+    final int MAX_FACES = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +50,25 @@ public class CameraActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CommonConst.RESULT_CAMERA) {
+            //カメラで取得した画像のとりこみ
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+
+            //TODO:取得画像に対して顔認識を行う
+            if (false) {
+                //FaceAPI
+                FaceDetector faceDetector = new FaceDetector(bitmap.getWidth(), bitmap.getHeight(), MAX_FACES);
+
+                Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                SparseArray<Face> faces = detector.detect(frame);
+            }
+
+            //画面に設定する
             imageView.setImageBitmap(bitmap);
         }
     }

@@ -11,11 +11,13 @@
     tools:context="com.example.tsubasa.createbattle.CameraActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
         android:id="@+id/image_view"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:layout_below="@+id/button_decision_player"
+        android:layout_above="@+id/button_camera"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
