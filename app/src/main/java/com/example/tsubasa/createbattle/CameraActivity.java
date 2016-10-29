@@ -2,13 +2,19 @@ package com.example.tsubasa.createbattle;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.FaceDetector;
+import android.graphics.PointF;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.face.Face;
+import com.google.android.gms.vision.face.FaceDetector;
 
 import Const.CommonConst;
 import Model.Player;
@@ -22,6 +28,9 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        //TODO
+        Log.d("CreateBattle", "CameraActivity onCreate");
 
         imageView = (ImageView) findViewById(R.id.image_view);
 
@@ -59,18 +68,26 @@ public class CameraActivity extends AppCompatActivity {
             //カメラで取得した画像のとりこみ
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
 
-            //TODO:取得画像に対して顔認識を行う
-            if (false) {
-                //FaceAPI
-                FaceDetector faceDetector = new FaceDetector(bitmap.getWidth(), bitmap.getHeight(), MAX_FACES);
+            //顔認識クラス宣言
+            FaceDetector detector = new FaceDetector.Builder(getApplicationContext())
+                    .setTrackingEnabled(false)
+                    .setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                    .build();
+            //カメラ画像に対して顔情報取得
+            Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+            SparseArray<Face> face = detector.detect(frame);
 
-                Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-                SparseArray<Face> faces = detector.detect(frame);
+            //顔の大きさ取得
+            int size = face.size();
+            Log.d("CreateBattle", "CameraActivity size = " + size);
+
+            //顔認識された場合
+            if (size > 0) {
+                //画面にカメラ画像を設定する
+                imageView.setImageBitmap(bitmap);
             }
-
-            //画面に設定する
-            imageView.setImageBitmap(bitmap);
         }
+
     }
 }
 
