@@ -86,6 +86,8 @@ public class CameraActivity extends AppCompatActivity {
                 //画面にカメラ画像を設定する
                 imageView.setImageBitmap(bitmap);
             }
+            //TODO:検証(絶対にカメラ画像が表示される)
+            imageView.setImageBitmap(bitmap);
         }
 
     }
