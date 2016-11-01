@@ -20,7 +20,7 @@ public class PlayerModel {
 		try {
 			Dao<Player, Integer> dao = helper.getDao(Player.class);
 			//TODO:更新処理
-			//dao.createOrUpdate(word);
+			//dao.createOrUpdate(player);
 		} catch (Exception e) {
 			Log.d("PlayerModel", "updatePlayerData Failed");
 		} finally {
