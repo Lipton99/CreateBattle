@@ -16,12 +16,10 @@ import java.lang.Override;import java.lang.String;import java.sql.SQLException;
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-	//	private static final String DATABASE_NAME = Environment.getExternalStorageDirectory() + "/ormExample.db";
-	private static final String DATABASE_NAME = "ormExample.db";
-	private static final int DATABASE_VERSION = 1;
+	//private static final String DATABASE_NAME = Environment.getExternalStorageDirectory() + "/ormExample.db";
 
 	public DatabaseHelper(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, CommonConst.DATABASE_NAME, null, CommonConst.DATABASE_VERSION);
 	}
 
 	@Override
