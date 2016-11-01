@@ -6,22 +6,13 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.google.android.gms.vision.Detector;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.face.Face;
-import com.google.android.gms.vision.face.FaceDetector;
-import com.google.android.gms.vision.face.Landmark;
-
 import java.util.HashMap;
-import java.util.List;
 
 import Const.CommonConst;
-import Model.PlayerModel;
 import Logic.PlayerLogic;
 
 public class CameraActivity extends AppCompatActivity {
@@ -75,9 +66,9 @@ public class CameraActivity extends AppCompatActivity {
             //カメラ画像あら顔情報取得
             faceStatusData = PlayerLogic.getFaceStatus(bitmap);
             //顔情報がある場合
-            if(!empty(faceStatusData)){
+            if (!empty(faceStatusData)) {
                 //画像を保存する
-                faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap,faceStatusData);       
+                faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
                 //Viewに設定する
                 imageView.setImageBitmap(bitmap);
             }

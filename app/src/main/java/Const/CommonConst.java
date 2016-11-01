@@ -11,13 +11,15 @@ public class CommonConst {
     public final static int RESULT_PLAYER_LIST_ACTIVITY = 3000;
     //バトル画面遷移結果
     public final static int RESULT_BATTLE_ACTIVITY = 4000;
-    
+
     /* LogicConst */
-    //顔画像保存先ディレクトリ
+    //顔画像保存先ディレクトリ(相対パス)
     public final static String FACE_BITMAP_FILE_PATH = "./data/faceBitmap/";
-    
+
     /* UtilityConst */
-    public static final String DATABASE_NAME = "createBattle.db";
-	public static final int DATABASE_VERSION = 1;
+    //DB名
+    public final static String DATABASE_NAME = "createBattle.db";
+    //DB version
+    public final static int DATABASE_VERSION = 1;
 
 }
