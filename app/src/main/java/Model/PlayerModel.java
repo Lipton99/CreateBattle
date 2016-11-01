@@ -5,10 +5,7 @@ package Model;
  */
 
 public class PlayerModel {
-
-	private static final String TAG = PlayerModel.class.getSimpleName();
 	private Context context;
-
 	public PlayerModel(Context context) {
 		this.context = context;
 	}
@@ -22,10 +19,10 @@ public class PlayerModel {
         DatabaseHelper helper = new DatabaseHelper(context);
 		try {
 			Dao<Player, Integer> dao = helper.getDao(Player.class);
-            //TODO:更新処理
+			//TODO:更新処理
 			//dao.createOrUpdate(word);
 		} catch (Exception e) {
-			Log.e(TAG, "例外が発生しました", e);
+			Log.d("PlayerModel", "updatePlayerData Failed");
 		} finally {
 			helper.close();
 		}
