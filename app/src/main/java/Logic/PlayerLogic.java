@@ -28,6 +28,8 @@ public class PlayerLogic {
   public HashMap<String, String> getFaceStatus(Bitmap bitmap){
     //顔情報
     HashMap<String, String> faceStatusData = new HashMap<String, String>();
+    //顔情報種別
+    int faceType = 0;
     
     //顔認識クラス宣言
     FaceDetector detector = new FaceDetector.Builder(getApplicationContext())
