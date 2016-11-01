@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import Const.CommonConst;
-import Model.Player;
+import Model.PlayerModel;
 
 public class PlayerLogic {
   
