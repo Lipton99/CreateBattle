@@ -78,4 +78,17 @@ public class PlayerLogic {
         }
     }
     return faceStatusData;
+  }
+  
+  public HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap ,HashMap<String, String> faceStatusData){
+    //保存ファイルパス
+    String filePath = CommonConst.FACE_BITMAP_FILE_PATH + time() + ".bmp";
+    
+    //指定ディレクトリ配下にBitmaを保存
+    bitmap.save(filePath);
+    
+    //ファイルパスを顔情報に追加する
+    faceStatusData.put("face_bitmap_file_path", filePath);
+    
+    return faceStatusData;
 }
