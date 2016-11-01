@@ -75,8 +75,11 @@ public class CameraActivity extends AppCompatActivity {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             //カメラ画像あら顔情報取得
             faceStatusData = PlayerLogic.getFaceStatus(bitmap);
-            //顔情報がある場合、Viewに設定する
+            //顔情報がある場合
             if(!empty(faceStatusData)){
+                //画像を保存する
+                faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap,faceStatusData);       
+                //Viewに設定する
                 imageView.setImageBitmap(bitmap);
             }
         }
