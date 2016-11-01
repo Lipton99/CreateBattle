@@ -1,3 +1,4 @@
+package Utility;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,10 +12,7 @@ import jp.radiocat.example.ormExample.entity.Word;
 import java.lang.Override;import java.lang.String;import java.sql.SQLException;
 
 /**
- * jp.radiocat.example.ormExample.ormExample.
- * User: radiocat
- * Date: 2013/11/25
- * Time: 0:54
+ * Created by Tsubasa on 2016/11/01.
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
