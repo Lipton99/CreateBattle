@@ -58,8 +58,7 @@ public class CameraActivity extends AppCompatActivity {
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO:画像をDBに保存@mdlPlayerでプレイヤーデータ更新をする
-                //Player mdlPlayer = Player.getInstance();
+                // TODO:faceStatusDataをベースにプレイヤーデータ登録する
 
                 // プレイヤー選択画面に遷移
                 Intent intent = new Intent(getApplication(), PlayerSelectActivity.class);
