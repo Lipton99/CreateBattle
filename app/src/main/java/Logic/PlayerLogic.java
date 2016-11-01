@@ -24,7 +24,11 @@ import Const.CommonConst;
 import Model.Player;
 
 public class PlayerLogic {
-  //Playerに関する情報整形
+  
+  /**
+  * BitMap情報から顔情報を取得する
+  * @param bitmap Bitmap画像
+  */
   public HashMap<String, String> getFaceStatus(Bitmap bitmap){
     //顔情報
     HashMap<String, String> faceStatusData = new HashMap<String, String>();
@@ -80,6 +84,11 @@ public class PlayerLogic {
     return faceStatusData;
   }
   
+  /**
+  * BitMapの保存
+  * @param bitmap Bitmap画像
+  * @param faceStatusData 顔情報
+  */
   public HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap ,HashMap<String, String> faceStatusData){
     //保存ファイルパス
     String filePath = CommonConst.FACE_BITMAP_FILE_PATH + time() + ".bmp";
