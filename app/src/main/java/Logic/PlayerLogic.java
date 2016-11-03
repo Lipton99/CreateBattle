@@ -1,5 +1,6 @@
 package Logic;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.SparseArray;
@@ -9,9 +10,11 @@ import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import Const.CommonConst;
+import Logic.BaseLogic;
 
 public class PlayerLogic {
 
@@ -20,14 +23,14 @@ public class PlayerLogic {
      *
      * @param bitmap Bitmap画像
      */
-    public static HashMap<String, String> getFaceStatus(Bitmap bitmap) {
+    public static HashMap<String, String> getFaceStatus(Context context, Bitmap bitmap) {
         //顔情報
         HashMap<String, String> faceStatusData = new HashMap<String, String>();
         //顔情報種別
         int faceType = 0;
 
         //顔認識クラス宣言
-        FaceDetector detector = new FaceDetector.Builder(getApplicationContext())
+        FaceDetector detector = new FaceDetector.Builder(context)
                 .setTrackingEnabled(false)
                 .setLandmarkType(FaceDetector.ALL_LANDMARKS)
                 .build();
@@ -82,11 +85,18 @@ public class PlayerLogic {
      * @param faceStatusData 顔情報
      */
     public static HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap, HashMap<String, String> faceStatusData) {
+        //保存ディレクトリパス
+        String dirPath = CommonConst.FACE_BITMAP_FILE_PATH;
         //保存ファイルパス
-        String filePath = CommonConst.FACE_BITMAP_FILE_PATH + time() + ".bmp";
+        String filePath = "";
 
         //指定ディレクトリ配下にBitmaを保存
-        bitmap.save(filePath);
+        try {
+            filePath = BaseLogic.saveBitmap(bitmap, dirPath);
+        } catch (IOException e) {
+            Log.e("CreateBattle", "CameraActivity saveFileFaceBitmap failed saveBitmap()");
+            e.printStackTrace();
+        }
 
         //ファイルパスを顔情報に追加する
         faceStatusData.put("face_bitmap_file_path", filePath);

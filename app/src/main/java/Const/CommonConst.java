@@ -14,7 +14,7 @@ public class CommonConst {
 
     /* LogicConst */
     //顔画像保存先ディレクトリ(相対パス)
-    public final static String FACE_BITMAP_FILE_PATH = "./data/faceBitmap/";
+    public final static String FACE_BITMAP_FILE_PATH = "/data/faceBitmap/";
 
     /* UtilityConst */
     //DB名

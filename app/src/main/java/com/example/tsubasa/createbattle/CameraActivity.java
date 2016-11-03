@@ -49,7 +49,7 @@ public class CameraActivity extends AppCompatActivity {
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO:faceStatusDataをベースにプレイヤーデータ登録する
+                // TODO:faceStatusDataをベースにプレイヤーデータをDBに登録する
 
                 // プレイヤー選択画面に遷移
                 Intent intent = new Intent(getApplication(), PlayerSelectActivity.class);
@@ -64,9 +64,9 @@ public class CameraActivity extends AppCompatActivity {
             //カメラで取得した画像取得
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             //カメラ画像あら顔情報取得
-            faceStatusData = PlayerLogic.getFaceStatus(bitmap);
+            faceStatusData = PlayerLogic.getFaceStatus(getApplicationContext(),bitmap);
             //顔情報がある場合
-            if (!empty(faceStatusData)) {
+            if (!faceStatusData.isEmpty()) {
                 //画像を保存する
                 faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
                 //Viewに設定する
