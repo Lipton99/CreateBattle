@@ -50,13 +50,48 @@ public class Player {
     public Player() {
     }
 
-    public Player(List updateParam) {
-        this.playerName = updateParam[COLUMN_PLAYER_NAME];
-        this.playerHp = updateParam[COLUMN_PLAYER_HP];
-        this.playerAtk = updateParam[COLUMN_PLAYER_ATK];
-        this.playerDef = updateParam[COLUMN_PLAYER_DEF];
-        this.playerJob = updateParam[COLUMN_PLAYER_JOB];
-        this.playerStatus = updateParam[COLUMN_PLAYER_STATUS];
-        this.playerDelFlag = updateParam[COLUMN_PLAYER_DEL_FLAG];
+    public Player(HashMap<String, String> playerData) {
+        //プレイヤー名
+        if(playerData.containsKey(COLUMN_PLAYER_NAME)){
+            this.playerName = updateParam.get(COLUMN_PLAYER_NAME);
+        }else{
+            this.playerName = "";
+        }
+        //HP
+        if(playerData.containsKey(COLUMN_PLAYER_HP)){
+            this.playerHp = playerData.get(COLUMN_PLAYER_HP);
+        }else{
+            this.playerHp = 0;
+        }
+        //攻撃力
+        if(playerData.containsKey(COLUMN_PLAYER_ATK)){
+            this.playerAtk = playerData.get(COLUMN_PLAYER_ATK);
+        }else{
+            this.playerAtk = 0;
+        }
+        //防御力
+        if(playerData.containsKey(COLUMN_PLAYER_DEF)){
+            this.playerDef = playerData.get(COLUMN_PLAYER_DEF);
+        }else{
+            this.playerDef = 0;
+        }
+        //職業
+        if(playerData.containsKey(COLUMN_PLAYER_JOB)){
+            this.playerJob = playerData.get(COLUMN_PLAYER_JOB);
+        }else{
+            this.playerJob = 0;
+        }
+        //特殊ステータス
+        if(playerData.containsKey(COLUMN_PLAYER_STATUS)){
+            this.playerStatus = playerData.get(COLUMN_PLAYER_STATUS);
+        }else{
+            this.playerStatus = 0;
+        }
+        //削除フラグ
+        if(playerData.containsKey(COLUMN_PLAYER_DEL_FLAG)){
+            this.playerDelFlag = playerData.get(COLUMN_PLAYER_DEL_FLAG);
+        }else{
+            this.playerDelFlag = 0;
+        }
     }
 }
