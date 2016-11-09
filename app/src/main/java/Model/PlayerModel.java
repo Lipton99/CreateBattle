@@ -23,7 +23,7 @@ public class PlayerModel {
 
     /**
      * updateする
-     * @param player      対象のエンティティ
+     * @param playerId      プレイヤーID
      * @param updateParam 更新内容
      */
     private void updatePlayerData(Int playerId , HashMap<String, String> updateParam) {
@@ -48,7 +48,7 @@ public class PlayerModel {
 
     /**
      * selectする
-     * @param player 対象のエンティティ
+     * @param playerId プレイヤーID
      */
     private void findByPlayerId(Int playerId) {
         DatabaseHelper helper = new DatabaseHelper(context);
@@ -64,7 +64,7 @@ public class PlayerModel {
 
     /**
      * insert する
-     * @param player 対象のエンティティ
+     * @param registParam 登録情報
      */
     private void registPlayerData(HashMap<String, String> registParam) {
         //登録情報の設定
@@ -79,7 +79,5 @@ public class PlayerModel {
         } finally {
             helper.close();
         }
-
     }
-
 }
