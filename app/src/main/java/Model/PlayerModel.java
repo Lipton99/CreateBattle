@@ -26,7 +26,7 @@ public class PlayerModel {
      * @param player      対象のエンティティ
      * @param updateParam 更新内容
      */
-    private void updatePlayerData(Int playerId , List updateParam) {
+    private void updatePlayerData(Int playerId , HashMap<String, String> updateParam) {
         //TODO:対象プレイヤーの情報取得
         //findByPlayerId(playerId);
         
@@ -66,7 +66,7 @@ public class PlayerModel {
      * insert する
      * @param player 対象のエンティティ
      */
-    private void registPlayerData(List registParam) {
+    private void registPlayerData(HashMap<String, String> registParam) {
         //登録情報の設定
         Player player = new Player(registParam);
         DatabaseHelper helper = new DatabaseHelper(context);
