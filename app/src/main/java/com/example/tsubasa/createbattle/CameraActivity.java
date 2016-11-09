@@ -32,6 +32,7 @@ public class CameraActivity extends AppCompatActivity {
         //TODO
         Log.d("CreateBattle", "CameraActivity onCreate");
 
+        //Viewレイアウト設定
         imageView = (ImageView) findViewById(R.id.image_view);
 
         // カメラボタンにクリックアクション設定
@@ -51,8 +52,9 @@ public class CameraActivity extends AppCompatActivity {
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //プレイヤー情報がある場合
                 if (!playerData.isEmpty()) {
-                    // TODO:faceStatusDataをベースにプレイヤーデータをDBに登録する
+                    //プレイヤー情報をDBに登録する
                     PlayerModel playerModel = new PlayerModel (getApplicationContext());
                     playerModel.registPlayerData(playerData);
                 }
@@ -77,7 +79,6 @@ public class CameraActivity extends AppCompatActivity {
                 faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
                 //顔情報からプレイヤーステータスを設定
                 playerData = PlayerLogic.getStatusByFaseStatus(faceStatusData);
-                
                 //Viewに設定する
                 imageView.setImageBitmap(bitmap);
             }
