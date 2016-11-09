@@ -103,4 +103,18 @@ public class PlayerLogic {
 
         return faceStatusData;
     }
+    
+    public static List getStatusByFaseStatus(HashMap<String, String> faceStatusData){
+        List playerData;
+        
+        //プレイヤーステータス計算
+        //TODO:程よい値になるようにアルゴリズムを考える
+        playerData[Player.COLUMN_PLAYER_HP] = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
+        playerData[Player.COLUMN_PLAYER_ATK] = faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE));
+        playerData[Player.COLUMN_PLAYER_DEF] = faceStatusData.get(String.valueOf(Landmark.LEFT_EYE));
+        playerData[Player.COLUMN_PLAYER_JOB] = faceStatusData.get(String.valueOf(Landmark.NOSE_BASE));
+        playerData[Player.COLUMN_PLAYER_STATUS] = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
+        
+        return playerData;
+    }
 }
