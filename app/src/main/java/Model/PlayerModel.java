@@ -26,12 +26,14 @@ public class PlayerModel {
      * @param player      対象のエンティティ
      * @param updateParam 更新内容
      */
-    private void updatePlayerData(Player player, List updateParam) {
+    private void updatePlayerData(List updateParam) {
+        //更新情報の設定
+        Player player = new Player(updateParam);
         DatabaseHelper helper = new DatabaseHelper(context);
         try {
             Dao<Player, Integer> dao = helper.getDao(Player.class);
             //TODO:更新処理
-            //dao.createOrUpdate(player);
+            dao.createOrUpdate(player);
         } catch (Exception e) {
             Log.d("PlayerModel", "updatePlayerData Failed");
         } finally {
