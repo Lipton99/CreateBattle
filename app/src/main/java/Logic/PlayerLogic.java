@@ -130,7 +130,7 @@ public class PlayerLogic {
         //状態異常設定
         playerStatus = Math.ceil(playerStatus);
         
-        //TODO:程よい値になるようにアルゴリズムを考える
+        //計算値の設定
         playerData.put(Player.COLUMN_PLAYER_HP , playerHp);
         playerData.put(Player.COLUMN_PLAYER_ATK , playerAtk);
         playerData.put(Player.COLUMN_PLAYER_DEF , playerDef);
