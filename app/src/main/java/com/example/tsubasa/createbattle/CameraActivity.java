@@ -54,7 +54,7 @@ public class CameraActivity extends AppCompatActivity {
                 if (!playerData.isEmpty()) {
                     // TODO:faceStatusDataをベースにプレイヤーデータをDBに登録する
                     PlayerModel playerModel = new PlayerModel (getApplicationContext());
-                    playerModel.updatePlayerData(playerData);
+                    playerModel.registPlayerData(playerData);
                 }
 
                 // プレイヤー選択画面に遷移
