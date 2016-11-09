@@ -22,7 +22,7 @@ public class CameraActivity extends AppCompatActivity {
     //顔情報
     HashMap<String, String> faceStatusData = new HashMap<String, String>();
     //Player情報
-    List playerData;
+    HashMap<String, String> playerData = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
