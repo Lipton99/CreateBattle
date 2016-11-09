@@ -21,6 +21,8 @@ public class BaseLogic {
      * BitMapの保存
      *
      * @param bitmap Bitmap画像
+     * @param dirPath 保存先ディレクトリ
+     *
      */
     public static String saveBitmap(Bitmap bitmap, String dirPath) throws IOException {
 
@@ -37,10 +39,10 @@ public class BaseLogic {
         Date mDate = new Date();
         SimpleDateFormat fileNameDate = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String fileName = fileNameDate.format(mDate) + ".jpg";
-        String AttachName = file.getAbsolutePath() + "/" + fileName;
+        String filePath = file.getAbsolutePath() + "/" + fileName;
 
         try {
-            FileOutputStream out = new FileOutputStream(AttachName);
+            FileOutputStream out = new FileOutputStream(filePath);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
             out.flush();
             out.close();
@@ -49,7 +51,7 @@ public class BaseLogic {
             throw e;
         }
 
-        return AttachName;
+        return filePath;
 
         // save index
         /*
