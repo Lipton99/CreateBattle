@@ -21,6 +21,8 @@ public class CameraActivity extends AppCompatActivity {
     ImageView imageView;
     //顔情報
     HashMap<String, String> faceStatusData = new HashMap<String, String>();
+    //Player情報
+    List playerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,11 @@ public class CameraActivity extends AppCompatActivity {
         decisionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO:faceStatusDataをベースにプレイヤーデータをDBに登録する
+                if (!playerData.isEmpty()) {
+                    // TODO:faceStatusDataをベースにプレイヤーデータをDBに登録する
+                    PlayerModel playerModel = new PlayerModel (getApplicationContext());
+                    playerModel.updatePlayerData(playerData);
+                }
 
                 // プレイヤー選択画面に遷移
                 Intent intent = new Intent(getApplication(), PlayerSelectActivity.class);
@@ -67,8 +73,11 @@ public class CameraActivity extends AppCompatActivity {
             faceStatusData = PlayerLogic.getFaceStatus(getApplicationContext(),bitmap);
             //顔情報がある場合
             if (!faceStatusData.isEmpty()) {
-                //画像を保存する
+                //画像を保存する、保存先情報を追加
                 faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
+                //顔情報からプレイヤーステータスを設定
+                playerData = PlayerLogic.getStatusByFaseStatus(faceStatusData);
+                
                 //Viewに設定する
                 imageView.setImageBitmap(bitmap);
             }
