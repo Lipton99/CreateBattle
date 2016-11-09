@@ -50,14 +50,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(Integer userId, String playerName, Integer playerHp, Integer playerAtk, Integer playerDef, Integer playerJob, Integer playerStatus, Integer playerDelFlag) {
-        this.userId = userId;
-        this.playerName = playerName;
-        this.playerHp = playerHp;
-        this.playerAtk = playerAtk;
-        this.playerDef = playerDef;
-        this.playerJob = playerJob;
-        this.playerStatus = playerStatus;
-        this.playerDelFlag = playerDelFlag;
+    public Player(List updateParam) {
+        this.playerName = updateParam[COLUMN_PLAYER_NAME];
+        this.playerHp = updateParam[COLUMN_PLAYER_HP];
+        this.playerAtk = updateParam[COLUMN_PLAYER_ATK];
+        this.playerDef = updateParam[COLUMN_PLAYER_DEF];
+        this.playerJob = updateParam[COLUMN_PLAYER_JOB];
+        this.playerStatus = updateParam[COLUMN_PLAYER_STATUS];
+        this.playerDelFlag = updateParam[COLUMN_PLAYER_DEL_FLAG];
     }
 }
