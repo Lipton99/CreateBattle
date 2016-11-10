@@ -77,7 +77,12 @@ public class CameraActivity extends AppCompatActivity {
             //顔情報がある場合
             if (!faceStatusData.isEmpty()) {
                 //画像を保存する、保存先情報を追加
-                faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
+                try {
+                    faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
+                } catch(Exception e) {
+                    Log.e("Camera Activity", "Error.");
+                    e.printStackTrace();
+                }
                 //顔情報からプレイヤーステータスを設定
                 playerData = PlayerLogic.getStatusByFaseStatus(faceStatusData);
                 //Viewに設定する
