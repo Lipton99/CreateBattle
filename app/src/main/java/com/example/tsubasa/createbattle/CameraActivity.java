@@ -55,7 +55,7 @@ public class CameraActivity extends AppCompatActivity {
                 //プレイヤー情報がある場合
                 if (!playerData.isEmpty()) {
                     //プレイヤー情報をDBに登録する
-                    PlayerModel playerModel = new PlayerModel (getApplicationContext());
+                    PlayerModel playerModel = new PlayerModel(getApplicationContext());
                     playerModel.registPlayerData(playerData);
                 }
 
@@ -72,7 +72,7 @@ public class CameraActivity extends AppCompatActivity {
             //カメラで取得した画像取得
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             //カメラ画像あら顔情報取得
-            faceStatusData = PlayerLogic.getFaceStatus(getApplicationContext(),bitmap);
+            faceStatusData = PlayerLogic.getFaceStatus(getApplicationContext(), bitmap);
             //顔情報がある場合
             if (!faceStatusData.isEmpty()) {
                 //画像を保存する、保存先情報を追加
