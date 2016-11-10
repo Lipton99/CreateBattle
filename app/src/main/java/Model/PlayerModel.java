@@ -23,15 +23,22 @@ public class PlayerModel {
 
     /**
      * updateする
-     * @param player      対象のエンティティ
+     * @param playerId      プレイヤーID
      * @param updateParam 更新内容
      */
-    private void updatePlayerData(Player player, List updateParam) {
+    private void updatePlayerData(Int playerId , HashMap<String, String> updateParam) {
+        //TODO:対象プレイヤーの情報取得
+        //findByPlayerId(playerId);
+        
+        //TODO:取得情報を元に更新情報を設定
+        
+        //更新情報の設定
+        Player player = new Player(updateParam);
         DatabaseHelper helper = new DatabaseHelper(context);
         try {
             Dao<Player, Integer> dao = helper.getDao(Player.class);
             //TODO:更新処理
-            //dao.createOrUpdate(player);
+            dao.createOrUpdate(player);
         } catch (Exception e) {
             Log.d("PlayerModel", "updatePlayerData Failed");
         } finally {
@@ -41,20 +48,36 @@ public class PlayerModel {
 
     /**
      * selectする
-     * @param player 対象のエンティティ
+     * @param playerId プレイヤーID
      */
-    private void findByPlayerId(Player player) {
+    private void findByPlayerId(Int playerId) {
         DatabaseHelper helper = new DatabaseHelper(context);
-
+            try {
+                Dao<Word, Integer> dao = helper.getDao(Player.class);
+                return dao.queryForAll();
+            }catch (Exception e) {
+                Log.d("PlayerModel", "findByPlayerId Failed");
+            } finally {
+            helper.close();
+        }
     }
 
     /**
      * insert する
-     * @param player 対象のエンティティ
+     * @param registParam 登録情報
      */
-    private void registPlayerData(Player player) {
+    private void registPlayerData(HashMap<String, String> registParam) {
+        //登録情報の設定
+        Player player = new Player(registParam);
         DatabaseHelper helper = new DatabaseHelper(context);
-
+        try {
+            Dao<Player, Integer> dao = helper.getDao(Player.class);
+            //登録処理
+            dao.createOrUpdate(player);
+        } catch (Exception e) {
+            Log.d("PlayerModel", "registPlayerData Failed");
+        } finally {
+            helper.close();
+        }
     }
-
 }

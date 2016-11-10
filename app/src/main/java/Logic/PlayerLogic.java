@@ -104,25 +104,38 @@ public class PlayerLogic {
         return faceStatusData;
     }
 
+<<<<<<< HEAD
     /**
+=======
+     /**
+>>>>>>> origin/master
      * プレイヤーステータス算出
      *
      * @param faceStatusData 顔情報
      */
     public static HashMap<String, String> getStatusByFaseStatus(HashMap<String, String> faceStatusData){
         HashMap<String, String> playerData = new HashMap<String, String>();
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/master
         //顔情報で初期化
         int playerHp = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
         int playerAtk = faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE));
         int playerDef = faceStatusData.get(String.valueOf(Landmark.LEFT_EYE));
         int playerJob = faceStatusData.get(String.valueOf(Landmark.NOSE_BASE));
         int playerStatus = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/master
         //プレイヤーステータス計算
         playerHp = Math.ceil(playerHp * 10000);
         playerAtk = Math.ceil(playerAtk * 100);
         playerDef = Math.ceil(playerDef * 100);
+<<<<<<< HEAD
 
         //職業設定
         playerJob = Math.ceil(playerJob);
@@ -130,13 +143,29 @@ public class PlayerLogic {
         //状態異常設定
         playerStatus = Math.ceil(playerStatus);
 
+=======
+        
+        //職業設定
+        playerJob = Math.ceil(playerJob);
+        
+        //状態異常設定
+        playerStatus = Math.ceil(playerStatus);
+        
+>>>>>>> origin/master
         //計算値の設定
         playerData.put(Player.COLUMN_PLAYER_HP , playerHp);
         playerData.put(Player.COLUMN_PLAYER_ATK , playerAtk);
         playerData.put(Player.COLUMN_PLAYER_DEF , playerDef);
         playerData.put(Player.COLUMN_PLAYER_JOB , playerJob);
         playerData.put(Player.COLUMN_PLAYER_STATUS , playerStatus);
+<<<<<<< HEAD
 
         return playerData;
     }
 }
+=======
+        
+        return playerData;
+    }
+}
+>>>>>>> origin/master
