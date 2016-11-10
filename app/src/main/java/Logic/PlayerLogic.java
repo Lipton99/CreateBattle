@@ -115,7 +115,7 @@ public class PlayerLogic {
         HashMap<String, String> playerData = new HashMap<String, String>();
 
         //顔情報で初期化
-        double playerHp = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH)));
+        double playerHp = Double.parseDouble(faceStatusData.get("0"));
         double playerAtk = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE)));
         double playerDef = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.LEFT_EYE)));
         double playerJob = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.NOSE_BASE)));
