@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import Const.CommonConst;
 import Logic.BaseLogic;
+import Model.Entity.Player;
 
 public class PlayerLogic {
 
@@ -114,11 +115,11 @@ public class PlayerLogic {
         HashMap<String, String> playerData = new HashMap<String, String>();
 
         //顔情報で初期化
-        int playerHp = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
-        int playerAtk = faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE));
-        int playerDef = faceStatusData.get(String.valueOf(Landmark.LEFT_EYE));
-        int playerJob = faceStatusData.get(String.valueOf(Landmark.NOSE_BASE));
-        int playerStatus = faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH));
+        double playerHp = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH)));
+        double playerAtk = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE)));
+        double playerDef = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.LEFT_EYE)));
+        double playerJob = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.NOSE_BASE)));
+        double playerStatus = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH)));
 
         //プレイヤーステータス計算
         playerHp = Math.ceil(playerHp * 10000);
@@ -138,11 +139,11 @@ public class PlayerLogic {
         playerStatus = Math.ceil(playerStatus);
 
         //計算値の設定
-        playerData.put(Player.COLUMN_PLAYER_HP, playerHp);
-        playerData.put(Player.COLUMN_PLAYER_ATK, playerAtk);
-        playerData.put(Player.COLUMN_PLAYER_DEF, playerDef);
-        playerData.put(Player.COLUMN_PLAYER_JOB, playerJob);
-        playerData.put(Player.COLUMN_PLAYER_STATUS, playerStatus);
+        playerData.put(Player.COLUMN_PLAYER_HP,  Double.toString(playerHp));
+        playerData.put(Player.COLUMN_PLAYER_ATK,  Double.toString(playerAtk));
+        playerData.put(Player.COLUMN_PLAYER_DEF, Double.toString(playerDef));
+        playerData.put(Player.COLUMN_PLAYER_JOB, Double.toString(playerJob));
+        playerData.put(Player.COLUMN_PLAYER_STATUS, Double.toString(playerStatus));
 
         return playerData;
     }

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.j256.ormlite.dao.Dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import Model.Entity.Player;
@@ -27,7 +28,7 @@ public class PlayerModel {
      * @param playerId    プレイヤーID
      * @param updateParam 更新内容
      */
-    private void updatePlayerData(Int playerId, HashMap<String, String> updateParam) {
+    private void updatePlayerData(Integer playerId, HashMap<String, String> updateParam) {
         //TODO:対象プレイヤーの情報取得
         //findByPlayerId(playerId);
 
@@ -52,16 +53,17 @@ public class PlayerModel {
      *
      * @param playerId プレイヤーID
      */
-    private void findByPlayerId(Int playerId) {
+    private List<Player> findByPlayerId(Integer playerId) {
         DatabaseHelper helper = new DatabaseHelper(context);
         try {
-            Dao<Word, Integer> dao = helper.getDao(Player.class);
+            Dao<Player, Integer> dao = helper.getDao(Player.class);
             return dao.queryForAll();
         } catch (Exception e) {
             Log.d("PlayerModel", "findByPlayerId Failed");
         } finally {
             helper.close();
         }
+        return null;
     }
 
     /**
@@ -69,7 +71,7 @@ public class PlayerModel {
      *
      * @param registParam 登録情報
      */
-    private void registPlayerData(HashMap<String, String> registParam) {
+    public void registPlayerData(HashMap<String, String> registParam) {
         //登録情報の設定
         Player player = new Player(registParam);
         DatabaseHelper helper = new DatabaseHelper(context);

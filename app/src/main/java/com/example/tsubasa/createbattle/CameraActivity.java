@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import Const.CommonConst;
 import Logic.PlayerLogic;
+import Model.PlayerModel;
 
 public class CameraActivity extends AppCompatActivity {
 
