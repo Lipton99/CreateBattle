@@ -23,15 +23,16 @@ public class PlayerModel {
 
     /**
      * updateする
-     * @param playerId      プレイヤーID
+     *
+     * @param playerId    プレイヤーID
      * @param updateParam 更新内容
      */
-    private void updatePlayerData(Int playerId , HashMap<String, String> updateParam) {
+    private void updatePlayerData(Int playerId, HashMap<String, String> updateParam) {
         //TODO:対象プレイヤーの情報取得
         //findByPlayerId(playerId);
-        
+
         //TODO:取得情報を元に更新情報を設定
-        
+
         //更新情報の設定
         Player player = new Player(updateParam);
         DatabaseHelper helper = new DatabaseHelper(context);
@@ -48,22 +49,24 @@ public class PlayerModel {
 
     /**
      * selectする
+     *
      * @param playerId プレイヤーID
      */
     private void findByPlayerId(Int playerId) {
         DatabaseHelper helper = new DatabaseHelper(context);
-            try {
-                Dao<Word, Integer> dao = helper.getDao(Player.class);
-                return dao.queryForAll();
-            }catch (Exception e) {
-                Log.d("PlayerModel", "findByPlayerId Failed");
-            } finally {
+        try {
+            Dao<Word, Integer> dao = helper.getDao(Player.class);
+            return dao.queryForAll();
+        } catch (Exception e) {
+            Log.d("PlayerModel", "findByPlayerId Failed");
+        } finally {
             helper.close();
         }
     }
 
     /**
      * insert する
+     *
      * @param registParam 登録情報
      */
     private void registPlayerData(HashMap<String, String> registParam) {
