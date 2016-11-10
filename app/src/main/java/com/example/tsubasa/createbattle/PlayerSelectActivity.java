@@ -35,8 +35,8 @@ public class PlayerSelectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(), BattleActivity.class);
-                intent.putExtra("playerId1", playerId1);
-                intent.putExtra("playerId2", playerId2);
+                //intent.putExtra("playerId1", playerId1);
+                //intent.putExtra("playerId2", playerId2);
                 int requestCode = CommonConst.RESULT_BATTLE_ACTIVITY;
                 startActivityForResult(intent, requestCode);
             }
@@ -59,7 +59,7 @@ public class PlayerSelectActivity extends AppCompatActivity {
         switch (requestCode) {
             //プレイヤー一覧からの結果取得
             case CommonConst.RESULT_PLAYER_LIST_ACTIVITY:
-                playerId1 = intent.getIntExtra("RESULT", 0);
+                //playerId1 = intent.getIntExtra("RESULT", 0);
                 break;
             //バトル画面から結果取得
             case CommonConst.RESULT_BATTLE_ACTIVITY:
