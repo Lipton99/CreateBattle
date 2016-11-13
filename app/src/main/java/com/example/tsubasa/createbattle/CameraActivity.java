@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -31,7 +32,7 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
 
         //TODO
-        Log.d("CreateBattle", "CameraActivity onCreate");
+        Log.i("CreateBattle", "CameraActivity onCreate");
 
         //Viewレイアウト設定
         imageView = (ImageView) findViewById(R.id.image_view);
@@ -57,7 +58,7 @@ public class CameraActivity extends AppCompatActivity {
                 if (!playerData.isEmpty()) {
                     //プレイヤー情報をDBに登録する
                     PlayerModel playerModel = new PlayerModel(getApplicationContext());
-                    playerModel.registPlayerData(playerData);
+                    playerModel.registerPlayerData(playerData);
                 }
 
                 // プレイヤー選択画面に遷移
@@ -78,15 +79,18 @@ public class CameraActivity extends AppCompatActivity {
             if (!faceStatusData.isEmpty()) {
                 //画像を保存する、保存先情報を追加
                 try {
-                    faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData);
+                    faceStatusData = PlayerLogic.saveFileFaceBitmap(bitmap, faceStatusData, getApplicationContext(), this);
                 } catch(Exception e) {
                     Log.e("Camera Activity", "Error.");
                     e.printStackTrace();
                 }
                 //顔情報からプレイヤーステータスを設定
-                playerData = PlayerLogic.getStatusByFaseStatus(faceStatusData);
+                playerData = PlayerLogic.getStatusByFaceStatus(faceStatusData);
                 //Viewに設定する
                 imageView.setImageBitmap(bitmap);
+            } else {
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                this.onDestroy();
             }
         }
     }

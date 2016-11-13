@@ -1,6 +1,8 @@
 package Logic;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.SparseArray;
@@ -14,7 +16,6 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import Const.CommonConst;
-import Logic.BaseLogic;
 import Model.Entity.Player;
 
 public class PlayerLogic {
@@ -54,22 +55,26 @@ public class PlayerLogic {
                     switch (faceType) {
                         //口の位置
                         case Landmark.BOTTOM_MOUTH:
-                            faceStatusData.put(String.valueOf(Landmark.BOTTOM_MOUTH), String.valueOf(landmark.getPosition()));
+                            faceStatusData.put(String.valueOf(Landmark.BOTTOM_MOUTH), String.valueOf(
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity BOTTOM_MOUTH = " + landmark.getPosition());
                             break;
                         //鼻の位置
                         case Landmark.NOSE_BASE:
-                            faceStatusData.put(String.valueOf(Landmark.NOSE_BASE), String.valueOf(landmark.getPosition()));
+                            faceStatusData.put(String.valueOf(Landmark.NOSE_BASE), String.valueOf(
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity NOSE_BASE = " + landmark.getPosition());
                             break;
                         //左目の位置
                         case Landmark.LEFT_EYE:
-                            faceStatusData.put(String.valueOf(Landmark.LEFT_EYE), String.valueOf(landmark.getPosition()));
+                            faceStatusData.put(String.valueOf(Landmark.LEFT_EYE), String.valueOf(
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity LEFT_EYE = " + landmark.getPosition());
                             break;
                         //右目の位置
                         case Landmark.RIGHT_EYE:
-                            faceStatusData.put(String.valueOf(Landmark.RIGHT_EYE), String.valueOf(landmark.getPosition()));
+                            faceStatusData.put(String.valueOf(Landmark.RIGHT_EYE), String.valueOf(
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity RIGHT_EYE = " + landmark.getPosition());
                             break;
                     }
@@ -85,7 +90,7 @@ public class PlayerLogic {
      * @param bitmap         Bitmap画像
      * @param faceStatusData 顔情報
      */
-    public static HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap, HashMap<String, String> faceStatusData) {
+    public static HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap, HashMap<String, String> faceStatusData, Context context, Activity activity) {
         //保存ディレクトリパス
         String dirPath = CommonConst.FACE_BITMAP_FILE_PATH;
         //保存ファイルパス
@@ -93,7 +98,7 @@ public class PlayerLogic {
 
         //指定ディレクトリ配下にBitmaを保存
         try {
-            filePath = BaseLogic.saveBitmap(bitmap, dirPath);
+            filePath = BaseLogic.saveBitmap(bitmap, context, activity);
         } catch (IOException e) {
             Log.e("CreateBattle", "CameraActivity saveFileFaceBitmap failed saveBitmap()");
             e.printStackTrace();
@@ -111,15 +116,15 @@ public class PlayerLogic {
      *
      * @param faceStatusData 顔情報
      */
-    public static HashMap<String, String> getStatusByFaseStatus(HashMap<String, String> faceStatusData) {
+    public static HashMap<String, String> getStatusByFaceStatus(HashMap<String, String> faceStatusData) {
         HashMap<String, String> playerData = new HashMap<String, String>();
 
         //顔情報で初期化
-        double playerHp = Double.parseDouble(faceStatusData.get("0"));
-        double playerAtk = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE)));
-        double playerDef = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.LEFT_EYE)));
-        double playerJob = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.NOSE_BASE)));
-        double playerStatus = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH)));
+        Double playerHp = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE)));
+        Double playerAtk = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.RIGHT_EYE)));
+        Double playerDef = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.LEFT_EYE)));
+        Double playerJob = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.NOSE_BASE)));
+        Double playerStatus = Double.parseDouble(faceStatusData.get(String.valueOf(Landmark.BOTTOM_MOUTH)));
 
         //プレイヤーステータス計算
         playerHp = Math.ceil(playerHp * 10000);
