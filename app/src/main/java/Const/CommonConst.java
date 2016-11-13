@@ -7,6 +7,10 @@ public class CommonConst {
     /* ActivityConst*/
     //カメラ画面遷移結果
     public final static int RESULT_CAMERA = 1000;
+    // request for CameraActivity
+    public static final int REQUEST_FOR_CAMERA = 1001;
+    // result ok from CameraActivity
+    public static final int CAMERA_ACTIVITY_RESULT_OK = 1111;
     //プレイヤー一覧画面遷移結果
     public final static int RESULT_PLAYER_LIST_ACTIVITY = 3000;
     //バトル画面遷移結果

@@ -62,8 +62,10 @@ public class CameraActivity extends AppCompatActivity {
                 }
 
                 // プレイヤー選択画面に遷移
-                Intent intent = new Intent(getApplication(), PlayerSelectActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent();
+                intent.putExtra("path", faceStatusData.get("face_bitmap_file_path"));
+                setResult(CommonConst.CAMERA_ACTIVITY_RESULT_OK, intent);
+                finish();
             }
         });
     }

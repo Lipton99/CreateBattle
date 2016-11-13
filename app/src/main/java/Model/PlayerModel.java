@@ -69,18 +69,19 @@ public class PlayerModel {
     /**
      * insert する
      *
-     * @param registParam 登録情報
+     * @param param 登録情報
      */
-    public void registPlayerData(HashMap<String, String> registParam) {
+    public void registerPlayerData(HashMap<String, String> param) {
         //登録情報の設定
-        Player player = new Player(registParam);
+        Player player = new Player(param);
         DatabaseHelper helper = new DatabaseHelper(context);
         try {
             Dao<Player, Integer> dao = helper.getDao(Player.class);
             //登録処理
             dao.createOrUpdate(player);
         } catch (Exception e) {
-            Log.d("PlayerModel", "registPlayerData Failed");
+            Log.e("PlayerModel", "registerPlayerData Failed");
+            e.printStackTrace();
         } finally {
             helper.close();
         }

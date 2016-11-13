@@ -1,12 +1,23 @@
 package com.example.tsubasa.createbattle;
 
+import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import Const.CommonConst;
+import Logic.BaseLogic;
 
 public class PlayerSelectActivity extends AppCompatActivity {
 
@@ -19,16 +30,26 @@ public class PlayerSelectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_player_select);
 
         // カメラボタンにクリックアクション設定
-        Button btnCameraStart = (Button) findViewById(R.id.button_cameraStart);
-        btnCameraStart.setOnClickListener(new View.OnClickListener() {
+        Button btnCameraStart1 = (Button) findViewById(R.id.button_cameraStart1);
+        btnCameraStart1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // カメラ画面に遷移
                 Intent intent = new Intent(getApplication(), CameraActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA);
             }
         });
 
+        // カメラボタンにクリックアクション設定
+        Button btnCameraStart2 = (Button) findViewById(R.id.button_cameraStart2);
+        btnCameraStart2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // カメラ画面に遷移
+                Intent intent = new Intent(getApplication(), CameraActivity.class);
+                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA);
+            }
+        });
         // バトル開始ボタンにクリックアクション設定
         Button btnBattleStart = (Button) findViewById(R.id.button_battleStart);
         btnBattleStart.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +77,7 @@ public class PlayerSelectActivity extends AppCompatActivity {
 
     //返しの結果を受け取る
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
         switch (requestCode) {
             //プレイヤー一覧からの結果取得
             case CommonConst.RESULT_PLAYER_LIST_ACTIVITY:
@@ -64,6 +86,27 @@ public class PlayerSelectActivity extends AppCompatActivity {
             //バトル画面から結果取得
             case CommonConst.RESULT_BATTLE_ACTIVITY:
                 break;
+            // from cameraActivity
+            case CommonConst.REQUEST_FOR_CAMERA:
+                if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
+
+                    ImageView iv = (ImageView) findViewById(R.id.player1);
+                    String path = intent.getStringExtra("path");
+                    if (!BaseLogic.checkPermission(
+                            this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                        ActivityCompat.requestPermissions(
+                                this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    }
+
+                    File file = new File(path);
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    iv.setImageBitmap(bitmap);
+
+                }
+
+                break;
+
             default:
                 break;
         }

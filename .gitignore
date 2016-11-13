@@ -5,3 +5,7 @@
 .DS_Store
 /build
 /captures
+/.idea/gradle.xml
+/.idea/vcs.xml
+/app/app.iml
+/gradle/wrapper/gradle-wrapper.properties

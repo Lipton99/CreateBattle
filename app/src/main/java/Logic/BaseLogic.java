@@ -55,7 +55,7 @@ public class BaseLogic {
             throw e;
         }
 
-        if (!checkPermission(context)) {
+        if (!checkPermission(context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
             ActivityCompat.requestPermissions(activity,
                     new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
@@ -71,7 +71,7 @@ public class BaseLogic {
             throw e;
         }
 
-        return file.getAbsolutePath();
+        return path + "/" + fileName;
 
         // save index
         /*
@@ -84,11 +84,11 @@ public class BaseLogic {
         */
     }
 
-    public static boolean checkPermission(Context context) {
+    public static boolean checkPermission(Context context, String kind) {
         boolean permission = true;
 
         int permissionCheck = ContextCompat.checkSelfPermission(
-                context, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                context, kind);
         if (PackageManager.PERMISSION_DENIED == permissionCheck) {
             permission = false;
         }

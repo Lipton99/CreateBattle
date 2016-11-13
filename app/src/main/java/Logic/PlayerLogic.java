@@ -56,25 +56,32 @@ public class PlayerLogic {
                         //口の位置
                         case Landmark.BOTTOM_MOUTH:
                             faceStatusData.put(String.valueOf(Landmark.BOTTOM_MOUTH), String.valueOf(
-                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2)
+                                            + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity BOTTOM_MOUTH = " + landmark.getPosition());
                             break;
+
                         //鼻の位置
                         case Landmark.NOSE_BASE:
                             faceStatusData.put(String.valueOf(Landmark.NOSE_BASE), String.valueOf(
-                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2)
+                                            + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity NOSE_BASE = " + landmark.getPosition());
                             break;
+
                         //左目の位置
                         case Landmark.LEFT_EYE:
                             faceStatusData.put(String.valueOf(Landmark.LEFT_EYE), String.valueOf(
-                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2)
+                                            + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity LEFT_EYE = " + landmark.getPosition());
                             break;
+
                         //右目の位置
                         case Landmark.RIGHT_EYE:
                             faceStatusData.put(String.valueOf(Landmark.RIGHT_EYE), String.valueOf(
-                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2) + Math.pow(landmark.getPosition().y, 2))));
+                                    Math.sqrt(Math.pow(landmark.getPosition().x, 2)
+                                            + Math.pow(landmark.getPosition().y, 2))));
                             Log.d("CreateBattle", "CameraActivity RIGHT_EYE = " + landmark.getPosition());
                             break;
                     }
@@ -91,12 +98,11 @@ public class PlayerLogic {
      * @param faceStatusData 顔情報
      */
     public static HashMap<String, String> saveFileFaceBitmap(Bitmap bitmap, HashMap<String, String> faceStatusData, Context context, Activity activity) {
-        //保存ディレクトリパス
-        String dirPath = CommonConst.FACE_BITMAP_FILE_PATH;
+
         //保存ファイルパス
         String filePath = "";
 
-        //指定ディレクトリ配下にBitmaを保存
+        //指定ディレクトリ配下にBitmapを保存
         try {
             filePath = BaseLogic.saveBitmap(bitmap, context, activity);
         } catch (IOException e) {
@@ -144,11 +150,11 @@ public class PlayerLogic {
         playerStatus = Math.ceil(playerStatus);
 
         //計算値の設定
-        playerData.put(Player.COLUMN_PLAYER_HP,  Double.toString(playerHp));
-        playerData.put(Player.COLUMN_PLAYER_ATK,  Double.toString(playerAtk));
-        playerData.put(Player.COLUMN_PLAYER_DEF, Double.toString(playerDef));
-        playerData.put(Player.COLUMN_PLAYER_JOB, Double.toString(playerJob));
-        playerData.put(Player.COLUMN_PLAYER_STATUS, Double.toString(playerStatus));
+        playerData.put(Player.COLUMN_PLAYER_HP,  Integer.toString(playerHp.intValue()));
+        playerData.put(Player.COLUMN_PLAYER_ATK,  Integer.toString(playerAtk.intValue()));
+        playerData.put(Player.COLUMN_PLAYER_DEF, Integer.toString(playerDef.intValue()));
+        playerData.put(Player.COLUMN_PLAYER_JOB, Integer.toString(playerJob.intValue()));
+        playerData.put(Player.COLUMN_PLAYER_STATUS, Integer.toString(playerStatus.intValue()));
 
         return playerData;
     }

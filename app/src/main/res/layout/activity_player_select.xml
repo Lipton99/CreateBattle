@@ -10,32 +10,62 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.tsubasa.createbattle.PlayerSelectActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/player1"
+        android:layout_toLeftOf="@+id/button_playerSelect1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="15dp"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/player2"
+        android:layout_below="@+id/player1"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/button_playerSelect2"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="15dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player 1\nSelect"
+        android:id="@+id/button_playerSelect1"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="2dp"
+        />
+
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PlayerGet"
-        android:id="@+id/button_cameraStart"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:text="Player 1\nGet"
+        android:id="@+id/button_cameraStart1"
+        android:layout_below="@+id/button_playerSelect1"
+        android:layout_alignEnd="@+id/button_playerSelect1" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player1Select"
-        android:id="@+id/button_playerSelect1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/button_cameraStart"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Player2Select"
+        android:text="Player 2\nSelect"
         android:id="@+id/button_playerSelect2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/button_cameraStart"/>
+        android:layout_alignTop="@+id/player2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player 2\nGet"
+        android:id="@+id/button_cameraStart2"
+        android:layout_below="@+id/button_playerSelect2"
+        android:layout_alignEnd="@+id/button_playerSelect2" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -43,6 +73,7 @@
         android:layout_height="wrap_content"
         android:text="ButtleStart"
         android:id="@+id/button_battleStart"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
