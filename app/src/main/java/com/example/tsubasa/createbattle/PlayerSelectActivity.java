@@ -36,7 +36,7 @@ public class PlayerSelectActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // カメラ画面に遷移
                 Intent intent = new Intent(getApplication(), CameraActivity.class);
-                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA);
+                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA_1);
             }
         });
 
@@ -47,7 +47,7 @@ public class PlayerSelectActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // カメラ画面に遷移
                 Intent intent = new Intent(getApplication(), CameraActivity.class);
-                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA);
+                startActivityForResult(intent, CommonConst.REQUEST_FOR_CAMERA_2);
             }
         });
         // バトル開始ボタンにクリックアクション設定
@@ -86,8 +86,8 @@ public class PlayerSelectActivity extends AppCompatActivity {
             //バトル画面から結果取得
             case CommonConst.RESULT_BATTLE_ACTIVITY:
                 break;
-            // from cameraActivity
-            case CommonConst.REQUEST_FOR_CAMERA:
+            // from cameraActivity 1
+            case CommonConst.REQUEST_FOR_CAMERA_1:
                 if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
 
                     ImageView iv = (ImageView) findViewById(R.id.player1);
@@ -104,6 +104,24 @@ public class PlayerSelectActivity extends AppCompatActivity {
                     iv.setImageBitmap(bitmap);
 
                 }
+
+                break;
+            // from cameraActivity 2
+            case CommonConst.REQUEST_FOR_CAMERA_2:
+                if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
+
+                    ImageView iv = (ImageView) findViewById(R.id.player2);
+                    String path = intent.getStringExtra("path");
+                    if (!BaseLogic.checkPermission(
+                            this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                        ActivityCompat.requestPermissions(
+                                this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    }
+
+                    File file = new File(path);
+                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    iv.setImageBitmap(bitmap);
 
                 break;
 
