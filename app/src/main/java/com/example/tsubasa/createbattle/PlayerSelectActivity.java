@@ -18,6 +18,7 @@ import java.io.IOException;
 
 import Const.CommonConst;
 import Logic.BaseLogic;
+import Logic.PlayerLogic;
 
 public class PlayerSelectActivity extends AppCompatActivity {
 
@@ -89,40 +90,18 @@ public class PlayerSelectActivity extends AppCompatActivity {
             // from cameraActivity 1
             case CommonConst.REQUEST_FOR_CAMERA_1:
                 if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
-
-                    ImageView iv = (ImageView) findViewById(R.id.player1);
-                    String path = intent.getStringExtra("path");
-                    if (!BaseLogic.checkPermission(
-                            this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-                        ActivityCompat.requestPermissions(
-                                this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                    }
-
-                    File file = new File(path);
-                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    iv.setImageBitmap(bitmap);
-
+                    ImageView iv1 = (ImageView) findViewById(R.id.player1);
+                    String path1 = intent.getStringExtra("path");
+                    iv1.setImageBitmap(PlayerLogic.setBitmapToView(path1, this, this));
                 }
-
                 break;
             // from cameraActivity 2
             case CommonConst.REQUEST_FOR_CAMERA_2:
                 if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
-
-                    ImageView iv = (ImageView) findViewById(R.id.player2);
-                    String path = intent.getStringExtra("path");
-                    if (!BaseLogic.checkPermission(
-                            this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-
-                        ActivityCompat.requestPermissions(
-                                this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                    }
-
-                    File file = new File(path);
-                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    iv.setImageBitmap(bitmap);
-
+                    ImageView iv2 = (ImageView) findViewById(R.id.player2);
+                    String path2 = intent.getStringExtra("path");
+                    iv2.setImageBitmap(PlayerLogic.setBitmapToView(path2, this, this));
+                }
                 break;
 
             default:

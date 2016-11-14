@@ -1,9 +1,11 @@
 package Logic;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.util.SparseArray;
 
@@ -12,10 +14,10 @@ import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-import Const.CommonConst;
 import Model.Entity.Player;
 
 public class PlayerLogic {
@@ -157,6 +159,31 @@ public class PlayerLogic {
         playerData.put(Player.COLUMN_PLAYER_STATUS, Integer.toString(playerStatus.intValue()));
 
         return playerData;
+    }
+
+
+    /**
+     * /**
+     * setBitmapToView
+     *
+     * @param path Absolute path of a face image
+     * @param context Context of caller
+     * @param activity Activity of caller
+     */
+    public static Bitmap setBitmapToView(String path,Context context, Activity activity) {
+
+
+        if (!BaseLogic.checkPermission(
+                context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            ActivityCompat.requestPermissions(
+                    activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+
+        File file = new File(path);
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+        return bitmap;
     }
 }
 
