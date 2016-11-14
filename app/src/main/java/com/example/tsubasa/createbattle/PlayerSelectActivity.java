@@ -91,16 +91,16 @@ public class PlayerSelectActivity extends AppCompatActivity {
             case CommonConst.REQUEST_FOR_CAMERA_1:
                 if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
                     ImageView iv1 = (ImageView) findViewById(R.id.player1);
-                    String path1 = intent.getStringExtra("path");
-                    iv1.setImageBitmap(PlayerLogic.setBitmapToView(path1, this, this));
+                    iv1.setImageBitmap(PlayerLogic.setBitmapToView(
+                            intent.getStringExtra("path"), this, this));
                 }
                 break;
             // from cameraActivity 2
             case CommonConst.REQUEST_FOR_CAMERA_2:
                 if(resultCode == CommonConst.CAMERA_ACTIVITY_RESULT_OK) {
                     ImageView iv2 = (ImageView) findViewById(R.id.player2);
-                    String path2 = intent.getStringExtra("path");
-                    iv2.setImageBitmap(PlayerLogic.setBitmapToView(path2, this, this));
+                    iv2.setImageBitmap(PlayerLogic.setBitmapToView(
+                            intent.getStringExtra("path"), this, this));
                 }
                 break;
 
