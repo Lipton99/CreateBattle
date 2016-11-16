@@ -33,7 +33,7 @@ public class TestMockLogic {
      * @param playerName プレイヤー名
      * @param playerId プレイヤーID
      */
-    public static HashMap<String, String> createPlayerDataMock(String playerName,Integer playerId) {
+    public static Player createPlayerDataMock(String playerName,Integer playerId) {
         
         //Randomクラスの生成（シード指定なし）
         Random random = new Random();
